@@ -459,12 +459,12 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
     /**
      * Jenkins title suffix - default is [Jenkins]
      */
-    private String titleSuffix = "[Jenkins]";
+    private String titleSuffix = Main.isDevelopmentMode ? "[Dev-Jenkins]"  :  "[Jenkins]";
 
     /**
      * Default Jenkins title when none is defined.
      */
-    private String defaultTitle = "Jenkins";
+    private String defaultTitle = Main.isDevelopmentMode ? "Dev-Jenkins" : "Jenkins";
 
     private MarkupFormatter markupFormatter;
 

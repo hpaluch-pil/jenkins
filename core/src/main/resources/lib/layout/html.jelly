@@ -91,7 +91,7 @@ THE SOFTWARE.
       <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     </j:if>
 
-    <title>${h.appendIfNotNull(title, ' [Jenkins (html.jelly)]', 'Jenkins (html.jelly)')}</title>
+    <title>${h.appendIfNotNull(title, ' '+app.titleSuffix, app.defaultTitle)}</title>
     <link rel="stylesheet" href="${resURL}/css/style.css" type="text/css" />
     <link rel="stylesheet" href="${resURL}/css/color.css" type="text/css" />
     <link rel="stylesheet" href="${resURL}/css/responsive-grid.css" type="text/css" />
