@@ -456,6 +456,16 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
      */
     private String systemMessage;
 
+    /**
+     * Jenkins title suffix - default is [Jenkins]
+     */
+    private String titleSuffix = "[Jenkins]";
+
+    /**
+     * Default Jenkins title when none is defined.
+     */
+    private String defaultTitle = "Jenkins";
+
     private MarkupFormatter markupFormatter;
 
     /**
@@ -1393,6 +1403,16 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
         return systemMessage;
     }
 
+    @Exported
+    public String getTitleSuffix() {
+        return titleSuffix;
+    }
+
+    @Exported
+    public String getDefaultTitle() {
+        return defaultTitle;
+    }
+
     @NonNull
     public PluginManager getPluginManager() {
         return pluginManager;
@@ -1762,6 +1782,22 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
      */
     public void setSystemMessage(String message) throws IOException {
         this.systemMessage = message;
+        save();
+    }
+
+    /**
+     * Sets Jenkins Title suffix - default <code>[Jenkins]</code>
+     */
+    public void setTitleSuffix(String titleSuffix) throws IOException {
+        this.titleSuffix = titleSuffix;
+        save();
+    }
+
+    /**
+     * Sets default Jenkins Title when none defined - default value <code>Jenkins</code>
+     */
+    public void setDefaultTitle(String defaultTitle) throws IOException {
+        this.defaultTitle = defaultTitle;
         save();
     }
 
@@ -3892,6 +3928,14 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
             JSONObject json = req.getSubmittedForm();
 
             systemMessage = Util.nullify(req.getParameter("system_message"));
+            defaultTitle = req.getParameter("default_title");
+            if (defaultTitle == null) {
+                defaultTitle = "";
+            }
+            titleSuffix = req.getParameter("title_suffix");
+            if (titleSuffix == null) {
+                titleSuffix="";
+            }
 
             boolean result = true;
             for (Descriptor<?> d : Functions.getSortedDescriptorsForGlobalConfigUnclassified())

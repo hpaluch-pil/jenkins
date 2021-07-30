@@ -39,6 +39,16 @@ THE SOFTWARE.
       <f:entry title="${%Home directory}" help="/help/system-config/homeDirectory.html">
         ${it.rootDir}
       </f:entry>
+      <f:entry title="Jenkins title suffix">
+        <j:set var="readOnlyMode" value="${!h.hasPermission(app.MANAGE)}" />
+        <f:textbox name="title_suffix" value="${it.titleSuffix}"
+                   disabled="${readOnlyMode?'true':null}" readonly="${readOnlyMode?'true':null}" />
+      </f:entry>
+      <f:entry title="Default Jenkins title" field="defaultTitle">
+        <j:set var="readOnlyMode" value="${!h.hasPermission(app.MANAGE)}" />
+        <f:textbox name="default_title" value="${it.defaultTitle}"
+                   disabled="${readOnlyMode?'true':null}" readonly="${readOnlyMode?'true':null}" />
+      </f:entry>
       <f:entry title="${%System Message}" help="/help/system-config/systemMessage.html">
         <j:set var="readOnlyMode" value="${!h.hasPermission(app.MANAGE)}" />
         <f:textarea name="system_message" value="${it.systemMessage}" disabled="${readOnlyMode?'true':null}" readonly="${readOnlyMode?'true':null}"

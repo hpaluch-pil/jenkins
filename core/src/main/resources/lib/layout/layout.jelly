@@ -111,7 +111,7 @@ THE SOFTWARE.
       <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     </j:if>
 
-    <title>${h.appendIfNotNull(title, ' [Jenkins (layout.jelly)]', 'Jenkins (layout.jelly)')}</title>
+    <title>${h.appendIfNotNull(title, ' '+app.titleSuffix, app.defaultTitle)}</title>
 
     <link rel="stylesheet" href="${resURL}/jsbundles/base-styles-v2.css" type="text/css" />
     <link rel="stylesheet" href="${resURL}/css/color.css" type="text/css" />
